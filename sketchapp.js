@@ -236,14 +236,15 @@ gridTrail.addEventListener("click", e => {
 });
 //create boxes function
 function createBox(num) {
-  console.log("Grid Size" + num);
   for (i = 0; i < num * num; i++) {
+    container.style.gridTemplateColumns = `repeat(${num}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${num}, 1fr)`;
     const div = document.createElement("div");
     const height = 500 / num;
     const width = 500 / num;
     div.style.height = `${height}px`;
     div.style.width = `${width}px`;
-    div.style.display = "inline-block";
+    // div.style.display = "inline-block";
     container.appendChild(div);
   }
 }
@@ -280,16 +281,16 @@ function darken() {
   );
 }
 function erase() {
-  let divs = document.querySelector("#grid div");
+  let divs = document.querySelectorAll("#grid div");
   divs.forEach(div =>
     div.addEventListener("mouseover", e => {
-      e.currentTarget.style.display === "none";
+      e.currentTarget.style.background = "none";
     })
   );
 }
 
 function track() {
-  let divs = document.querySelector("#grid div");
+  let divs = document.querySelectorAll("#grid div");
   divs.forEach(div =>
     div.addEventListener("mouseover", e => {
       e.currentTarget.style.transition = "background-color 2s ease-out";
